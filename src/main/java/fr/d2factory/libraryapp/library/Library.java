@@ -21,11 +21,12 @@ public interface Library {
      *
      * @return the book the member wishes to obtain if found
      * @throws HasLateBooksException in case the member has books that are late
+     * @throws NoAvailableBookException in case the book is no longer available
      *
      * @see fr.d2factory.libraryapp.book.ISBN
      * @see Member
      */
-    Book borrowBook(long isbnCode, Member member, LocalDate borrowedAt) throws HasLateBooksException;
+    Book borrowBook(long isbnCode, Member member, LocalDate borrowedAt) throws HasLateBooksException, NoAvailableBookException;
 
     /**
      * A member returns a book to the library.
