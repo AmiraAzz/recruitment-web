@@ -16,10 +16,6 @@ public class Student extends Member {
 	 * Price per day in cents.
 	 */
 	private static final float PRICE_DAY = 0.1f;
-	/**
-	 * Price per day in delay period.
-	 */
-	private static final float PRICE_DELAY = 0.1f;
 
 	public Student(int year, float money) {
 		super(money);
@@ -31,20 +27,11 @@ public class Student extends Member {
 	 */
 	@Override
 	public void payBook(long numberOfDays) {
-		float price = 0f;
-		if (this.year == 1) {
-
-			if (numberOfDays > 30) {
-				price = (numberOfDays - 30) * PRICE_DELAY + 15 * PRICE_DAY;
-			} else if (numberOfDays > 15) {
-				price = (numberOfDays - 15) * PRICE_DAY;
-			}
+		float price;
+		if (this.year == 1 && numberOfDays > 15) {
+			price = (numberOfDays - 15) * PRICE_DAY;
 		} else {
-			if (numberOfDays > 30) {
-				price = (numberOfDays - 30) * PRICE_DELAY + 30 * PRICE_DAY;
-			} else {
-				price = numberOfDays * PRICE_DAY;
-			}
+			price = numberOfDays * PRICE_DAY;
 		}
 
 		this.setWallet(this.getWallet() - price);
